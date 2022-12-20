@@ -1,9 +1,13 @@
-﻿  ParticleMethod.cpp
-D:\Uni\11 semester\c++\ParticleMethod\ParticleMethod-MPI_v2\ParticleMethod\Particle.h(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
-D:\Uni\11 semester\c++\ParticleMethod\ParticleMethod-MPI_v2\ParticleMethod\Particle.h(5,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
-D:\Uni\11 semester\c++\ParticleMethod\ParticleMethod-MPI_v2\ParticleMethod\ParticleMethod.cpp(15,29): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Uni\11 semester\c++\ParticleMethod\ParticleMethod-MPI_v2\ParticleMethod\ParticleMethod.cpp(107,46): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Uni\11 semester\c++\ParticleMethod\ParticleMethod-MPI_v2\ParticleMethod\ParticleMethod.cpp(126,52): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Uni\11 semester\c++\ParticleMethod\ParticleMethod-MPI_v2\ParticleMethod\ParticleMethod.cpp(127,58): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Uni\11 semester\c++\ParticleMethod\ParticleMethod-MPI_v2\ParticleMethod\ParticleMethod.cpp(160,54): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-  ParticleMethod.vcxproj -> D:\Uni\11 semester\c++\ParticleMethod\ParticleMethod-MPI_v2\x64\Debug\ParticleMethod.exe
+﻿  Particle.cpp
+D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\Particle.h(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\Particle.h(5,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+  ParticleMethod.cpp
+D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\Particle.h(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\Particle.h(5,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(93,46): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(112,52): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(113,58): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(146,54): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  Vector2d.cpp
+  Создание кода...
+  ParticleMethod.vcxproj -> D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\x64\Debug\ParticleMethod.exe

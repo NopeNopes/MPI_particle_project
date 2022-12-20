@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\Uni\11 semester\c++\ParticleMethod\ParticleMethod-MPI_v2\x64\Debug\ParticleMethod.exe</FullPath>
+      <FullPath>D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\x64\Debug\ParticleMethod.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

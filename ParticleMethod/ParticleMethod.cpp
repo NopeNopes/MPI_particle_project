@@ -19,11 +19,11 @@ int main(int argc, char* argv[])
     int world_rank, world_size;
 
     //tags for mpi
+    int root = 0;
     int send_initial_size_tag = 0;
     int send_particle_initial_tag = 1;
     int send_particle_size_calc_tag = 2;
     int send_particle_calc_tag = 3;
-    int root = 0;
 
     // time
     int time = 80;
@@ -40,9 +40,6 @@ int main(int argc, char* argv[])
     int num_particle_y = 20;
     int num_impactor = 5;
     int size_mesh = 0;
-
-
-
 
 
     MPI_Status status;
@@ -100,6 +97,7 @@ int main(int argc, char* argv[])
         size_mesh = particles_mesh.size();
     }
 
+    // broadcasting mesh to other processors
     MPI_Bcast(&size_mesh, 1, MPI_INT, root, MPI_COMM_WORLD);
     particles_mesh.resize(size_mesh);
     MPI_Bcast(&(particles_mesh[0]), size_mesh * 7, MPI_DOUBLE, root, MPI_COMM_WORLD);
@@ -116,8 +114,8 @@ int main(int argc, char* argv[])
     string line;
     ofstream out_x, out_y;
 
-    out_x.open("D:\\Uni\\11 semester\\c++\\ParticleMethod\\MPI_particle_project\\output\\particles_list_x.txt"); // окрываем файл для чтения
-    out_y.open("D:\\Uni\\11 semester\\c++\\ParticleMethod\\MPI_particle_project\\output\\particles_list_y.txt"); // окрываем файл для чтения
+    out_x.open("D:\\Uni\\11 semester\\c++\\ParticleMethod\\MPI_particle_project\\output\\particles_list_x.txt"); 
+    out_y.open("D:\\Uni\\11 semester\\c++\\ParticleMethod\\MPI_particle_project\\output\\particles_list_y.txt"); 
 
     out_x << endl;
     out_y << endl;

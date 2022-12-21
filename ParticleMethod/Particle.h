@@ -1,8 +1,9 @@
 #pragma once
 #include "Vector2d.h";
-#include <vector>
-using namespace std;
+#include <vector>;
 #include <math.h>;
+
+using namespace std;
 
 class Particle
 {
@@ -17,6 +18,8 @@ public:
 		v.resetToZero();
 		summaryForce.resetToZero();
 	}
+
+	
 
 };
 

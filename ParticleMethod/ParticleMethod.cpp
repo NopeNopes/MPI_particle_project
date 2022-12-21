@@ -10,17 +10,20 @@
 using namespace std;
 
 
+
+
 int main(int argc, char* argv[])
 {   
     Particle part1, part2;
     vector<Particle> particles_mesh;
-    int rank, size;
+    int world_rank, world_size;
 
     //tags for mpi
     int send_initial_size_tag = 0;
     int send_particle_initial_tag = 1;
     int send_particle_size_calc_tag = 2;
     int send_particle_calc_tag = 3;
+    int root = 0;
 
     // time
     int time = 80;
@@ -36,19 +39,23 @@ int main(int argc, char* argv[])
     int num_particle_x = 20;
     int num_particle_y = 20;
     int num_impactor = 5;
+    int size_mesh = 0;
+
+
+
 
 
     MPI_Status status;
     // initialize MPI
     MPI_Init(&argc, &argv);
-    // current rank
-    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    // current world_rank
+    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
     // number of processors
-    MPI_Comm_size(MPI_COMM_WORLD, &size);
+    MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
 
-    if (rank == 0) {
-        // main processor, rank=0
+    if (world_rank == root) {
+        // main processor, world_rank=0
         // generating mesh
         startwtime = MPI_Wtime();
         for (int i = 0; i < num_particle_x; i++) {
@@ -90,27 +97,19 @@ int main(int argc, char* argv[])
         }
 
         // total number of particles, including impactor and main mesh of particles
-        int size_mesh = particles_mesh.size();
+        size_mesh = particles_mesh.size();
+    }
 
-        for (int rank_i = 1; rank_i < size; rank_i++) {
-            MPI_Send(&size_mesh, 1, MPI_INT, rank_i, send_initial_size_tag, MPI_COMM_WORLD);
-            // size_send * 7 variables for every particle
-            MPI_Send(&particles_mesh[0], size_mesh * 7, MPI_DOUBLE, rank_i, send_particle_initial_tag, MPI_COMM_WORLD);
-        }
-    }
-    else {
-        // rank!=0, recieve from rank=0 particle mesh
-        int size_mesh_recv;
-        MPI_Recv(&size_mesh_recv, 1, MPI_INT, 0, send_initial_size_tag, MPI_COMM_WORLD, &status);
-        particles_mesh.resize(size_mesh_recv);
-        MPI_Recv(&particles_mesh[0], size_mesh_recv * 7, MPI_DOUBLE, 0, send_particle_initial_tag, MPI_COMM_WORLD, &status);
-    }
+    MPI_Bcast(&size_mesh, 1, MPI_INT, root, MPI_COMM_WORLD);
+    particles_mesh.resize(size_mesh);
+    MPI_Bcast(&(particles_mesh[0]), size_mesh * 7, MPI_DOUBLE, root, MPI_COMM_WORLD);
+
 
     // CALCULATING
     
-    // lower and upper bounds of number of particles assigned to current processor (depending on rank)
-    int i_min = rank * particles_mesh.size() / size;
-    int i_max = (rank + 1) * particles_mesh.size() / size;
+    // lower and upper bounds of number of particles assigned to current processor (depending on world_rank)
+    int i_min = world_rank * particles_mesh.size() / world_size;
+    int i_max = (world_rank + 1) * particles_mesh.size() / world_size;
     int count = 0;
 
 
@@ -141,24 +140,24 @@ int main(int argc, char* argv[])
         }
 
         // send calculated data to other processors
-        for (int rank_i = 0; rank_i < size; rank_i++) {
-            if (rank_i != rank) {
+        for (int world_rank_i = 0; world_rank_i < world_size; world_rank_i++) {
+            if (world_rank_i != world_rank) {
                 int size_send = particles_send.size();
-                MPI_Send(&size_send, 1, MPI_INT, rank_i, send_particle_size_calc_tag, MPI_COMM_WORLD);
-                MPI_Send(&particles_send[0], size_send * 7, MPI_DOUBLE, rank_i, send_particle_calc_tag, MPI_COMM_WORLD);
+                MPI_Send(&size_send, 1, MPI_INT, world_rank_i, send_particle_size_calc_tag, MPI_COMM_WORLD);
+                MPI_Send(&particles_send[0], size_send * 7, MPI_DOUBLE, world_rank_i, send_particle_calc_tag, MPI_COMM_WORLD);
             }
         }
 
         // recieve result from other processors
-        for (int rank_i = 0; rank_i < size; rank_i++) {
+        for (int world_rank_i = 0; world_rank_i < world_size; world_rank_i++) {
             vector<Particle> particles_recv;
             int size_recv;
 
-            if (rank_i != rank) {
+            if (world_rank_i != world_rank) {
                 // if recieving from other processors:
-                MPI_Recv(&size_recv, 1, MPI_INT, rank_i, send_particle_size_calc_tag, MPI_COMM_WORLD, &status);
+                MPI_Recv(&size_recv, 1, MPI_INT, world_rank_i, send_particle_size_calc_tag, MPI_COMM_WORLD, &status);
                 particles_recv.resize(size_recv);
-                MPI_Recv(&particles_recv[0], size_recv * 7, MPI_DOUBLE, rank_i, send_particle_calc_tag, MPI_COMM_WORLD, &status);
+                MPI_Recv(&particles_recv[0], size_recv * 7, MPI_DOUBLE, world_rank_i, send_particle_calc_tag, MPI_COMM_WORLD, &status);
                 
                 //transfering data to result vector
                 for (int j = 0; j < particles_recv.size(); j++) {
@@ -182,7 +181,7 @@ int main(int argc, char* argv[])
         }
 
         // writing to a file 
-        if (rank == 0) {
+        if (world_rank == root) {
 
             if (count % 100 == 0) {
 
@@ -205,7 +204,7 @@ int main(int argc, char* argv[])
     out_y.close(); 
 
     // resulting time
-    if (rank == 0) {
+    if (world_rank == root) {
         endwtime = MPI_Wtime();
         cout << "time= " << (endwtime - startwtime) << endl;
     }

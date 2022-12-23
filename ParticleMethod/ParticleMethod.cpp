@@ -12,22 +12,23 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {   
-    Particle part1, part2;
-    vector<Particle> particles_mesh;
-    int world_rank, world_size;
-
     //mpi
+    int world_rank, world_size;
     int root = 0;
 
     // time
     int time = 80;
-    double dt = 0.01; // time step
+    double dt = 0.01;
     double startwtime = 0.0;
     double endwtime;
+    
+    // particle
+    Particle part1, part2;
+    vector<Particle> particles_mesh;
 
     //number of particles
-    int num_particle_x = 20;
-    int num_particle_y = 20;
+    int num_particle_x = 24;
+    int num_particle_y = 24;
     int num_impactor = 4;
     int size_mesh = 0;
 
@@ -46,8 +47,7 @@ int main(int argc, char* argv[])
 
 
     if (world_rank == root) {
-        // main processor, world_rank=0
-        // generating mesh
+        // generating mesh on root processor
         startwtime = MPI_Wtime();
         for (int i = 0; i < num_particle_x; i++) {
             double coord_x = i * len_x / num_particle_x;
@@ -65,7 +65,7 @@ int main(int argc, char* argv[])
             }
         }
 
-        // generating impactor
+        // generating impactor on root processor
         for (int i = 1; i < num_impactor + 1; i++) {
             double coordX = i * len_x / num_particle_x;
             double coordY = len_y / num_particle_y;
@@ -146,14 +146,13 @@ int main(int argc, char* argv[])
             int size_mesh = particles_mesh.size();
         }
 
-        // broadcasting mesh to other processors
+        // broadcasting results to other processors
         MPI_Bcast(&size_mesh, 1, MPI_INT, root, MPI_COMM_WORLD);
         particles_mesh.resize(size_mesh);
         MPI_Bcast(&(particles_mesh[0]), size_mesh * 7, MPI_DOUBLE, root, MPI_COMM_WORLD);
 
         // writing to a file 
         if (world_rank == root) {
-
             if (count % 100 == 0) {
 
                 out_x << dt * count << ",";
@@ -168,7 +167,6 @@ int main(int argc, char* argv[])
                 out_y << endl;
             }
         }
-
     }// end of calculating and time steps
 
     out_x.close();

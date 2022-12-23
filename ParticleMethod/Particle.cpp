@@ -15,7 +15,7 @@ void ForceCalculate(vector<Particle>& particles, int i_min, int i_max) {
 			if (i != j) {
 				Vector2d dif = Vector2d(particles[i].r - particles[j].r);
 				double difNorm = dif.length();
-				if (dif.length() < sqrt(2)) {
+				if (dif.length() < sqrt(4)) {
 					double F = Force(Vector2d(particles[i].r), Vector2d(particles[j].r));
 					particles[i].summaryForce = particles[i].summaryForce + F * (1 / difNorm) * dif;
 				}

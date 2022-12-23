@@ -27,12 +27,15 @@ int main(int argc, char* argv[])
     vector<Particle> particles_mesh;
 
     //number of particles
-    int num_particle_x = 24;
-    int num_particle_y = 24;
+    int num_particle_x = 36;
+    int num_particle_y = 36;
     int num_impactor = 4;
-    int size_mesh = 0;
+
+    //velocity
+    double impactor_velocity = 2;
 
     // mesh
+    int size_mesh = 0;
     double d = 2;
     double len_x = num_particle_x * d;
     double len_y = num_particle_y * d;
@@ -71,15 +74,15 @@ int main(int argc, char* argv[])
             double coordY = len_y / num_particle_y;
 
             part2.r = Vector2d(len_x * 1.5 + coordX, coordY + len_y / 2);
-            part2.v = Vector2d(-1, 0);
+            part2.v = Vector2d(-impactor_velocity, 0);
             particles_mesh.push_back(part2);
             
             part2.r = Vector2d(len_x * 1.5 + coordX, len_y / 2 - coordY);
-            part2.v = Vector2d(-1, 0);
+            part2.v = Vector2d(-impactor_velocity, 0);
             particles_mesh.push_back(part2);
             
             part2.r = Vector2d(len_x * 1.5 + coordX, len_y / 2);
-            part2.v = Vector2d(-1, 0);
+            part2.v = Vector2d(-impactor_velocity, 0);
             particles_mesh.push_back(part2);
         }
 

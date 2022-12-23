@@ -8,7 +8,7 @@ double Force(Vector2d r1, Vector2d r2) {
 	return F;
 }
 
-void ForceCalculate(vector<Particle>& particles, int i_min, int i_max ) {
+void ForceCalculate(vector<Particle>& particles, int i_min, int i_max) {
 	for (int i = i_min; i < i_max; i++) {
 		particles[i].summaryForce.resetToZero();
 		for (int j = 0; j < particles.size(); j++) {

@@ -135,7 +135,7 @@ int main(int argc, char* argv[])
         particles_result.resize(send_count_all);
 
         // collecting every calculated part from all processors
-        MPI_Gather(&particles_send[0], send_count_per_process, MPI_DOUBLE, &particles_result[0], send_count_per_process, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+        MPI_Gather(&particles_send[0], send_count_per_process, MPI_DOUBLE, &particles_result[0], send_count_per_process, MPI_DOUBLE, root, MPI_COMM_WORLD);
 
         // clearing and override/redefine mesh for the next time step
         particles_mesh.clear();

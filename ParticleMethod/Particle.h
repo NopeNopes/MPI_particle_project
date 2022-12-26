@@ -19,8 +19,11 @@ public:
 		summaryForce.resetToZero();
 	}
 
+	Particle(Vector2d r1, Vector2d v1) {
+		r = r1;
+		v = v1;
+	}
 	
-
 };
 
 double Force(Vector2d r1, Vector2d r2);

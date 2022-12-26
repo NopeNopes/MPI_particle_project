@@ -27,8 +27,8 @@ int main(int argc, char* argv[])
     vector<Particle> particles_mesh;
 
     //number of particles
-    int num_particle_x = 36;
-    int num_particle_y = 36;
+    int num_particle_x = 12;
+    int num_particle_y = 12;
     int num_impactor = 4;
 
     //velocity
@@ -57,33 +57,50 @@ int main(int argc, char* argv[])
             for (int j = 0; j < num_particle_y; j++) {
                 if (i % 2 == 0) {
                     double coord_y = j * len_y / num_particle_y;
-                    part1.r = Vector2d(coord_x, coord_y);
-                    particles_mesh.push_back(part1);
+                    particles_mesh.push_back(
+                        Particle(
+                            Vector2d(coord_x, coord_y), 
+                            Vector2d(0, 0)
+                        )
+                    );
                 }
                 else {
-                    double coordY = j * len_y / num_particle_y + len_y / num_particle_y / 2;
-                    part1.r = Vector2d(coord_x, coordY);
-                    particles_mesh.push_back(part1);
+                    double coord_y = j * len_y / num_particle_y + len_y / num_particle_y / 2;
+                    particles_mesh.push_back(
+                        Particle(
+                            Vector2d(coord_x, coord_y), 
+                            Vector2d(0, 0)
+                        )
+                    );
                 }
             }
         }
 
         // generating impactor on root processor
         for (int i = 1; i < num_impactor + 1; i++) {
-            double coordX = i * len_x / num_particle_x;
-            double coordY = len_y / num_particle_y;
+            double coord_x = i * len_x / num_particle_x;
+            double coord_y = len_y / num_particle_y;
 
-            part2.r = Vector2d(len_x * 1.5 + coordX, coordY + len_y / 2);
-            part2.v = Vector2d(-impactor_velocity, 0);
-            particles_mesh.push_back(part2);
+            particles_mesh.push_back(
+                Particle(
+                    Vector2d(len_x * 1.5 + coord_x, coord_y + len_y / 2),
+                    Vector2d(-impactor_velocity, 0)
+                )
+            );
             
-            part2.r = Vector2d(len_x * 1.5 + coordX, len_y / 2 - coordY);
-            part2.v = Vector2d(-impactor_velocity, 0);
-            particles_mesh.push_back(part2);
+            particles_mesh.push_back(
+                Particle(
+                    Vector2d(len_x * 1.5 + coord_x, len_y / 2 - coord_y),
+                    Vector2d(-impactor_velocity, 0)
+                )
+            );
             
-            part2.r = Vector2d(len_x * 1.5 + coordX, len_y / 2);
-            part2.v = Vector2d(-impactor_velocity, 0);
-            particles_mesh.push_back(part2);
+            particles_mesh.push_back(
+                Particle(
+                    Vector2d(len_x * 1.5 + coord_x, len_y / 2),
+                    Vector2d(-impactor_velocity, 0)
+                )
+            );
         }
 
         // total number of particles, including impactor and main mesh of particles
@@ -142,7 +159,7 @@ int main(int argc, char* argv[])
 
         // clearing and override/redefine mesh for the next time step
         particles_mesh.clear();
-        if (world_rank == 0) {
+        if (world_rank == root) {
             for (int i = 0; i < particles_result.size(); i++) {
                 particles_mesh.push_back(particles_result[i]);
             }

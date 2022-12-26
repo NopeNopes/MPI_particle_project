@@ -23,16 +23,16 @@ int main(int argc, char* argv[])
     double endwtime;
     
     // particle
-    Particle part1, part2;
     vector<Particle> particles_mesh;
 
     //number of particles
-    int num_particle_x = 12;
-    int num_particle_y = 12;
+    int num_particle_x = 24;
+    int num_particle_y = 24;
     int num_impactor = 4;
 
     //velocity
-    double impactor_velocity = 2;
+    double impactor_velocity_x = 1;
+    double impactor_velocity_y = -0.1;
 
     // mesh
     int size_mesh = 0;
@@ -84,21 +84,21 @@ int main(int argc, char* argv[])
             particles_mesh.push_back(
                 Particle(
                     Vector2d(len_x * 1.5 + coord_x, coord_y + len_y / 2),
-                    Vector2d(-impactor_velocity, 0)
+                    Vector2d(-impactor_velocity_x, impactor_velocity_y)
                 )
             );
             
             particles_mesh.push_back(
                 Particle(
                     Vector2d(len_x * 1.5 + coord_x, len_y / 2 - coord_y),
-                    Vector2d(-impactor_velocity, 0)
+                    Vector2d(-impactor_velocity_x, impactor_velocity_y)
                 )
             );
             
             particles_mesh.push_back(
                 Particle(
                     Vector2d(len_x * 1.5 + coord_x, len_y / 2),
-                    Vector2d(-impactor_velocity, 0)
+                    Vector2d(-impactor_velocity_x, impactor_velocity_y)
                 )
             );
         }

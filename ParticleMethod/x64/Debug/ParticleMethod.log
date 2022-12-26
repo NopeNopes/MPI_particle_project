@@ -1,17 +1,12 @@
-﻿  Particle.cpp
+﻿  ParticleMethod.cpp
 D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\Particle.h(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
 D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\Particle.h(3,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
 D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\Particle.h(4,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
-  ParticleMethod.cpp
-D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\Particle.h(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
-D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\Particle.h(3,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
-D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\Particle.h(4,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
-D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(115,42): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(127,64): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(128,70): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(159,46): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(160,53): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(174,50): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(43,16): warning C4101: status: неиспользованная локальная переменная
-  Создание кода...
+D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(108,42): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(120,64): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(121,70): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(152,46): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(153,53): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(167,50): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\ParticleMethod\ParticleMethod.cpp(44,16): warning C4101: status: неиспользованная локальная переменная
   ParticleMethod.vcxproj -> D:\Uni\11 semester\c++\ParticleMethod\MPI_particle_project\x64\Debug\ParticleMethod.exe
